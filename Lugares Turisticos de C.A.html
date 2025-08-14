@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maravillas de Centroamérica</title>
+   <style>
+        :root {
+            --navy: #001F3F;
+            --light-navy: #003366;
+            --bone: #F5F5F5;
+            --off-white: #FAFAFA;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bone);
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--navy);
+            color: var(--off-white);
+            padding: 30px 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        
+        .subtitle {
+            font-style: italic;
+            opacity: 0.9;
+        }
+        
+        nav {
+            background-color: var(--light-navy);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        nav li {
+            margin: 0;
+        }
+        
+        nav a {
+            color: var(--off-white);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 15px 25px;
+            display: block;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+        
+        nav a:hover, nav a:focus {
+            background-color: var(--navy);
+            border-bottom: 3px solid var(--off-white);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        
+        .country-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            padding: 30px;
+            margin-bottom: 40px;
+            border-left: 5px solid var(--light-navy);
+        }
+        
+        .country-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .country-flag {
+            width: 80px;
+            height: 50px;
+            object-fit: cover;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        h2 {
+            color: var(--navy);
+            font-size: 2em;
+            margin-top: 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--light-navy);
+        }
+        
+        h3 {
+            color: var(--navy);
+            font-size: 1.5em;
+            margin: 25px 0 15px;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .attraction {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .attraction:hover {
+            transform: translateY(-5px);
+        }
+        
+        .attraction img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .attraction-info {
+            padding: 15px;
+            background-color: white;
+        }
+        
+        .attraction-info h4 {
+            margin: 0 0 10px;
+            color: var(--navy);
+        }
+        
+        .map-container {
+            margin: 30px 0;
+            text-align: center;
+            background-color: var(--off-white);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .map-container iframe {
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .food-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .food-card {
+            display: flex;
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+        }
+        
+        .food-img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+        }
+        
+        .food-info {
+            padding: 15px;
+            flex: 1;
+        }
+        
+        .food-info h4 {
+            margin: 0 0 8px;
+            color: var(--navy);
+        }
+        
+        .fun-fact {
+            background-color: var(--light-navy);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 30px 0;
+            position: relative;
+        }
+        
+        .fun-fact:before {
+            content: "❝";
+            font-size: 60px;
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            opacity: 0.2;
+        }
+        
+        .fun-fact h3 {
+            color: white;
+            margin-top: 0;
+            padding-left: 40px;
+        }
+        
+        footer {
+            background-color: var(--navy);
+            color: var(--off-white);
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 50px;
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+       }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+            }
+    
+  
+            nav a {
+                padding: 12px 20px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+            
+            .food-card {
+                flex-direction: column;
+            }
+            
+            .food-img {
+                width: 100%;
+                height: 150px;
+            }
+            
+            .country-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .country-flag {
+                width: 60px;
+                height: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Maravillas de Centroamérica</h1>
+        <p class="subtitle">Descubre la riqueza cultural y natural de estos cinco países extraordinarios</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#honduras">Honduras</a></li>
+            <li><a href="#elsalvador">El Salvador</a></li>
+            <li><a href="#nicaragua">Nicaragua</a></li>
+            <li><a href="#guatemala">Guatemala</a></li>
+            <li><a href="#panama">Panamá</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <!-- Honduras -->
+        <section id="honduras" class="country-card">
+            <div class="country-header">
+                <h2>Honduras</h2>
+                <img src="https://i.pinimg.com/736x/ae/48/c7/ae48c7214b695ac8a7e6be0d12749676.jpg" alt="Bandera de Honduras" class="country-flag"> 
+            </div>
+            <p>Honduras, ubicado en el corazón de Centroamérica, es un país de contrastes con una rica herencia maya, playas caribeñas de ensueño y una biodiversidad asombrosa. Conocido como "la república bananera" por su histórica producción de banano, Honduras alberga las impresionantes ruinas de Copán, parte del mundo maya, y las paradisíacas Islas de la Bahía con su famoso arrecife coralino.</p>
+            
+            <h3>Lugares Turísticos</h3>
+            <div class="gallery">
+                <div class="attraction">
+                    <img src="https://www.visitcentroamerica.com/wp-content/uploads/2025/04/Copan-Ruins-Honduras-03.webp" alt="Ruinas de Copán">
+                    <div class="attraction-info">
+                        <h4>Ruinas de Copán</h4>
+                        <p>Antigua ciudad maya declarada Patrimonio de la Humanidad, famosa por sus estelas y la Escalinata de los Jeroglíficos.</p>
+                    </div>
+                </div>
+                <div class="attraction">
+                    <img src="https://www.visitcentroamerica.com/wp-content/uploads/2025/04/Roatan-Bay-Islands-Honduras-01.webp" alt="Roatán">
+                    <div class="attraction-info">
+                        <h4>Roatán, Islas de la Bahía</h4>
+                        <p>Paraíso caribeño con algunos de los mejores sitios de buceo del mundo en el Sistema Arrecifal Mesoamericano.</p>
+                    </div>
+                </div>
+                <div class="attraction">
+                    <img src="https://xn--hondurasradiotvturstica-jfc.com/wp-content/uploads/2024/01/329337039_897946551251751_1723244756651345903_n-1024x1024.jpg" alt="Cataratas de Pulhapanzak">
+                    <div class="attraction-info">
+                        <h4>Cataratas de Pulhapanzak</h4>
+                        <p>Impresionantes cascadas de 43 metros de altura en el lago de Yojoa, rodeadas de vegetación tropical.</p>
+                    </div>
+                </div>
+                <div class="attraction">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/SanJuancito2010.jpg" alt="Parque Nacional La Tigra">
+                    <div class="attraction-info">
+                        <h4>Parque Nacional La Tigra</h4>
+                        <p>Reserva natural cercana a Tegucigalpa con senderos que atraviesan bosques nubosos llenos de vida silvestre.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <h3>Mapa de Honduras</h3>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7848811.238654654!2d-89.6208509028235!3d15.02520517036441!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f6a751a1a6d8a4b%3A0x6e8b3e8b3e8b3e8b!2sHonduras!5e0!3m2!1ses!2sus!4v1620000000000!5m2!1ses!2sus" width="100%" height="450" loading="lazy"></iframe>
+            </div>
+            
+            <h3>Gastronomía Local</h3>
+            <div class="food-section">
+                <div class="food-card">
+                    <img class="food-img" src="https://www.elheraldo.hn/binrepository/1260x945/0c0/0d0/none/45933/QQVW/diseno-sin-titulo-2024-03-20t164031_7044916_20240320164102.jpg" alt="Baleadas">
+                    <div class="food-info">
+                        <h4>Baleadas</h4>
+                        <p>Tortilla de harina rellena de frijoles refritos, queso y crema. Versiones especiales incluyen huevo, aguacate o carne.</p>
+                    </div>
+                </div>
+                <div class="food-card">
+                    <img class="food-img" src="https://www.196flavors.com/wp-content/uploads/2018/10/sopa-de-caracol-2b.jpg" alt="Sopa de caracol">
+                    <div class="food-info">
+                        <h4>Sopa de Caracol</h4>
+                        <p>Deliciosa sopa preparada con caracoles marinos, leche de coco, yuca y plátano verde, emblemática de la costa caribeña.</p>
+                    </div>
+                </div>
+                <div class="food-card">
+                    <img class="food-img" src="https://www.buenprovecho.hn/wp-content/uploads/2019/06/Pastelito-de-perro.jpg" alt="Pastelitos">
+                    <div class="food-info">
+                        <h4>Pastelitos</h4>
+                        <p>Empanaditas de masa de maíz rellenas de carne, arroz o frijoles, fritas hasta quedar doradas y crujientes.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="fun-fact">
+                <h3>¿Sabías que?</h3>
+                <p>Honduras alberga la "Ciudad Blanca" o "Ciudad del Dios Mono", un legendario sitio arqueológico descubierto recientemente en la selva de La Mosquitia, que podría contener los restos de una civilización desconocida.</p>
+            </div>
+        </section>
+        
+        <!-- El Salvador -->
+        <section id="elsalvador" class="country-card">
+            <div class="country-header">
+                <h2>El Salvador</h2>
+                <img src="https://scontent.ftgu1-2.fna.fbcdn.net/v/t39.30808-6/464218499_8540573372674398_4648135403697788453_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=cf85f3&_nc_eui2=AeHGOdBxfv218M0DWmfBkT8lK3u_GHV7Dagre78YdXsNqPCv9Y0yaZ2Ev_JKu6rgTJyY1ckLUouKwUif1FuO8hFq&_nc_ohc=keHCDDEktDgQ7kNvwFTlT-Y&_nc_oc=AdnjDYlUXV9kgLD8Uyo-wF-XLavZIn0rxUkgHe5XywTfTe9bJRw0htRtH-rVpMF-FUI&_nc_zt=23&_nc_ht=scontent.ftgu1-2.fna&_nc_gid=FarJ1F796S5fPTM3hI_mTg&oh=00_AfU5Y5xyl93nRhnEDO9yxvAPdA1zHtgXQirVTOoc9wE4Xg&oe=68A38480" alt="Bandera de El Salvador" class="country-flag">
+            </div>
+            <p>El Salvador, conocido como "El Pulgarcito de América" por su pequeño tamaño, es un país de volcanes imponentes, playas paradisíacas y una rica herencia cultural. A pesar de ser el país más pequeño de Centroamérica, ofrece una gran diversidad de paisajes, desde montañas cubiertas de café hasta costas perfectas para el surf.</p>
+            
+            <h3>Lugares Turísticos</h3>
+            <div class="gallery">
+                <div class="attraction">
+                    <img src="https://elsalvador.travel/system/wp-content/uploads/2022/01/13012021-Joya-de-Cere%CC%81n-Apertura-18.jpg" alt="Joya de Cerén">
+                    <div class="attraction-info">
+                        <h4>Joya de Cerén</h4>
+                        <p>Conocida como la "Pompeya de América", este sitio arqueológico muestra una aldea maya preservada por ceniza volcánica.</p>
+                    </div>
+                </div>
+                <div class="attraction">
+                    <img src="https://blog.uber-cdn.com/cdn-cgi/image/width=2160,quality=80,onerror=redirect,format=auto/wp-content/uploads/2019/04/Planes-para-disfrutar-al-m%C3%A1ximo-del-Volc%C3%A1n-de-San-Salvador.png" alt="Volcán de San Salvador">
+                    <div class="attraction-info">
+                        <h4>Volcán de San Salvador</h4>
+                        <p>Con su impresionante cráter "El Boquerón", ofrece vistas panorámicas y senderos para caminatas.</p>
+                    </div>
+                </div>
+                <div class="attraction">
+                    <img src="https://www.visitcentroamerica.com/wp-content/uploads/2025/04/Playa-El-Tunco-Shoreline-El-Salvador-01.webp" alt="Playa El Tunco">
+                    <div class="attraction-info">
+                        <h4>Playa El Tunco</h4>
+                        <p>Famosa playa para surfistas con formaciones rocosas únicas y vibrante vida nocturna.</p>
+                    </div>
+                </div>
+                <div class="attraction">
+                    <img src="https://elsalvador.travel/system/wp-content/uploads/2024/10/rutadelasflores.jpg" alt="Ruta de las Flores">
+                    <div class="attraction-info">
+                        <h4>Ruta de las Flores</h4>
+                        <p>Pintoresco recorrido por pueblos coloniales rodeados de plantaciones de café y flores.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <h3>Mapa de El Salvador</h3>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15720.0932035811!2d-89.187844!3d13.794185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f6347a30905e6c1%3A0x9eef58e7bb5e1151!2sEl%20Salvador!5e0!3m2!1ses!2sus!4v1620000000000!5m2!1ses!2sus" width="100%" height="450" loading="lazy"></iframe>
+            </div>
+            
+            <h3>Gastronomía Local</h3>
+            <div class="food-section">
+                <div class="food-card">
+                    <img class="food-img" src="https://www.elheraldo.hn/binrepository/1260x945/0c0/0d0/none/45933/QYDM/pupusas-un-plato-de-origen-hondureno_6038421_20231115134007.jpg" alt="Pupusas">
+                    <div class="food-info">
+                        <h4>Pupusas</h4>
+                        <p>Plato nacional, tortillas gruesas de maíz rellenas de queso, frijoles o chicharrón, servidas con curtido.</p>
+                    </div>
+                </div>
+                <div class="food-card">
+                    <img class="food-img" src="https://www.buenprovecho.hn/wp-content/uploads/2019/02/Untitled-design-13.jpg" alt="Yuca con chicharrón">
+                    <div class="food-info">
+                        <h4>Yuca con Chicharrón</h4>
+                        <p>Yuca cocida acompañada de chicharrón de cerdo, una combinación crujiente y sabrosa.</p>
+                    </div>
+                </div>
+                <div class="food-card">
+                    <img class="food-img" src="https://rumbameats.com/wp-content/uploads/2018/08/Sopa-de-Pata-1_680x510_acf_cropped.jpg" alt="Sopa de pata">
+                    <div class="food-info">
+                        <h4>Sopa de Pata</h4>
+                        <p>Sopa sustanciosa hecha con patas de res, plátanos, maíz y especias, considerada un reconstituyente.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="fun-fact">
+                <h3>¿Sabías que?</h3>
+                <p>El Salvador es el único país de Centroamérica que no tiene costa en el Mar Caribe, pero compensa esto con más de 300 km de costas en el Océano Pacífico, famosas por sus olas perfectas para el surf.</p>
+            </div>
+        </section>
+        
+        <!-- Nicaragua -->
+        <section id="nicaragua" class="country-card">
+            <div class="country-header">
+                <h2>Nicaragua</h2>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Bandera_de_Nicaragua.jpg" alt="Bandera de Nicaragua" class="country-flag">
+            </div>
+            <p>Nicaragua, la tierra de lagos y volcanes, es el país más grande de Centroamérica y uno de los menos explorados. Con ciudades coloniales bien preservadas como Granada y León, impresionantes volcanes activos y las paradisíacas Islas del Maíz, Nicaragua ofrece una auténtica experiencia centroamericana.</p>
+            
+            <h3>Lugares Turísticos</h3>
+            <div class="gallery">
+                <div class="attraction">
+                    <img src="https://edventure-travel.com/wp-content/uploads/2017/12/Granada-Nicaragua-22.jpg" alt="Granada">
+                    <div class="attraction-info">
+                        <h4>Granada</h4>
+                        <p>Una de las ciudades coloniales más antiguas de América, con coloridas casas e impresionante arquitectura.</p>
+                    </div>
+                </div>
+                <div class="attraction">
+                    <img src="https://travelrebels.com/wp-content/uploads/2023/06/isla-ometepe-in-nicaragua.jpg" alt="Isla de Ometepe">
+                    <div class="attraction-info">
+                        <h4>Isla de Ometepe</h4>
+                        <p>Isla formada por dos volcanes en el Lago Cocibolca, con petroglifos precolombinos y playas de arena volcánica.</p>
+                    </div>
+                </div>
+                <div class="attraction">
+                    <img src="https://www.visitcentroamerica.com/wp-content/uploads/2025/04/Masaya-Volcano-Crater-Nicaragua-Centroamerica-04.webp" alt="Volcán Masaya">
+                    <div class="attraction-info">
+                        <h4>Volcán Masaya</h4>
+                        <p>Uno de los pocos volcanes activos del mundo donde se puede llegar en auto hasta el borde del cráter.</p>
+                    </div>
+                </div>
+                <div class="attraction">
+                    <img src="https://www.visitcentroamerica.com/wp-content/uploads/2025/04/San-Juan-del-Sur-Bay-Nicaragua-Centroamerica-02.webp" alt="San Juan del Sur">
+                    <div class="attraction-info">
+                        <h4>San Juan del Sur</h4>
+                        <p>Encantador pueblo pesquero convertido en destino turístico con hermosas playas y vibrante vida nocturna.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <h3>Mapa de Nicaragua</h3>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15885673.144370107!2d-87.93964405!3d12.865416!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f0b58f1d6a0a1a5%3A0x9e8b4e8b4e8b4e8b!2sNicaragua!5e0!3m2!1ses!2sus!4v1620000000000!5m2!1ses!2sus" width="100%" height="450" loading="lazy"></iframe>
+            </div>
+            
+            <h3>Gastronomía Local</h3>
+            <div class="food-section">
+                <div class="food-card">
+                    <img class="food-img" src="https://www.recetas-nicaragua.com/base/stock/Recipe/gallo-pinto-nicaraguense/gallo-pinto-nicaraguense_web.jpg.webp" alt="Gallo pinto">
+                    <div class="food-info">
+                        <h4>Gallo Pinto</h4>
+                        <p>Plato nacional hecho con arroz y frijoles rojos, generalmente servido en el desayuno con huevos y plátanos.</p>
+                    </div>
+                </div>
+                <div class="food-card">
+                    <img class="food-img" src="https://www.recetasnestlecam.com/sites/default/files/styles/recipe_detail_desktop_new/public/srh_recipes/9cefa57e124ea8745057b05ca24a298e.webp?itok=LqdnSEwV" alt="Nacatamal">
+                    <div class="food-info">
+                        <h4>Nacatamal</h4>
+                        <p>Versión nicaragüense del tamal, relleno de carne de cerdo, arroz, papas y vegetales, envuelto en hoja de plátano.</p>
+                    </div>
+                </div>
+                <div class="food-card">
+                    <img class="food-img" src="https://www.recetasnestlecam.com/sites/default/files/styles/recipe_detail_desktop_new/public/srh_recipes/7c3730c044f16b7360d09ef09a009567.webp?itok=RUo88Eif" alt="Vigorón">
+                    <div class="food-info">
+                        <h4>Vigorón</h4>
+                        <p>Plato típico de Granada que combina yuca, chicharrón y ensalada de repollo con tomate, servido sobre hoja de plátano.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="fun-fact">
+                <h3>¿Sabías que?</h3>
+                <p>Nicaragua alberga el lago Cocibolca, el único lago de agua dulce en el mundo que contiene tiburones (tiburones toro que han adaptado a vivir en agua dulce). También es el lago más grande de Centroamérica.</p>
+            </div>
+        </section>
+        
+        <!-- Guatemala -->
+        <section id="guatemala" class="country-card">
+            <div class="country-header">
+                <h2>Guatemala</h2>
+                <img src="https://i.pinimg.com/736x/a9/e5/d7/a9e5d76e2bccf96d70402cd3fdd0d7ee.jpg" alt="Bandera de Guatemala" class="country-flag">
+            </div>
+            
+            <p>Guatemala, corazón del mundo maya, es un país de extraordinaria belleza natural y riqueza cultural. Desde las imponentes ruinas de Tikal hasta el colorido lago Atitlán rodeado de volcanes, Guatemala ofrece una mezcla única de patrimonio indígena, ciudades coloniales y paisajes espectaculares.</p>
+            
+            <h3>Lugares Turísticos</h3>
+            <div class="gallery">
+                <div class="attraction">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f5/Tikal_Temple_I.jpg" alt="Tikal">
+                    <div class="attraction-info">
+                        <h4>Tikal</h4>
+                        <p>Majestuoso sitio arqueológico maya con imponentes templos que emergen de la selva petenera.</p>
+                    </div>
+                </div>
+                <div class="attraction">
+                    <img src="https://www.visitcentroamerica.com/wp-content/uploads/2025/04/Lake-Atitlan-Town-Guatemala-01.webp" alt="Lago Atitlán">
+                    <div class="attraction-info">
+                        <h4>Lago Atitlán</h4>
+                        <p>Considerado uno de los lagos más bellos del mundo, rodeado por tres volcanes y pintorescos pueblos mayas.</p>
+                    </div>
+                </div>
+                <div class="attraction">
+                    <img src="https://www.visitcentroamerica.com/wp-content/uploads/2025/04/La-Antigua-Guatemala-Streets-01.webp" alt="Antigua Guatemala">
+                    <div class="attraction-info">
+                        <h4>Antigua Guatemala</h4>
+                        <p>Antigua capital colonial con calles empedradas, ruinas de iglesias y vistas espectaculares a los volcanes.</p>
+                    </div>
+                </div>
+                <div class="attraction">
+                    <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/85/aa/af/caption.jpg?w=1000&h=-1&s=1" alt="Semuc Champey">
+                    <div class="attraction-info">
+                        <h4>Semuc Champey</h4>
+                        <p>Paraíso natural con pozas de agua turquesa escalonadas sobre un puente natural de piedra caliza.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <h3>Mapa de Guatemala</h3>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15885673.144370107!2d-91.93964405!3d15.783471!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8588135036e7506b%3A0x35982b375b84d5bb!2sGuatemala!5e0!3m2!1ses!2sus!4v1620000000000!5m2!1ses!2sus" width="100%" height="450" loading="lazy"></iframe>
+            </div>
+            
+            <h3>Gastronomía Local</h3>
+            <div class="food-section">
+                <div class="food-card">
+                    <img class="food-img" src="https://www.guatemala.com/fotos/2020/09/El-pepian-guatemalteco-que-forma-parte-de-la-gastronomia-local-885x500.jpg" alt="Pepián">
+                    <div class="food-info">
+                        <h4>Pepián</h4>
+                        <p>Plato nacional guatemalteco, un estofado espeso de carne con una salsa de semillas y especias tostadas.</p>
+                    </div>
+                </div>
+                <div class="food-card">
+                    <img class="food-img" src="https://www.recetas-guatemala.com/base/stock/Recipe/248-image/248-image_web.jpg.webp" alt="Kak'ik">
+                    <div class="food-info">
+                        <h4>Kak'ik</h4>
+                        <p>Sopa tradicional maya de pavo con especias, especialmente achiote, que le da su característico color rojo.</p>
+                    </div>
+                </div>
+                <div class="food-card">
+                    <img class="food-img" src="https://aprende.guatemala.com/wp-content/uploads/2016/11/pasos-para-hacer-rellenitos-de-platano.webp" alt="Rellenitos">
+                    <div class="food-info">
+                        <h4>Rellenitos</h4>
+                        <p>Postre hecho de puré de plátano relleno de frijoles dulces, frito y espolvoreado con azúcar.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="fun-fact">
+                <h3>¿Sabías que?</h3>
+                <p>Guatemala es el país con la mayor población indígena de Centroamérica, donde más de 20 grupos mayas distintos mantienen vivas sus tradiciones, lenguas y trajes típicos únicos en cada comunidad.</p>
+            </div>
+        </section>
+        
+         <!-- Panamá -->
+        <section id="panama" class="country-card">
+            <div class="country-header">
+                <h2>Panamá</h2>
+                <img src="https://i.pinimg.com/1200x/00/51/f1/0051f15aeec4ac33df0530c5a8fd667e.jpg" alt="Bandera de Panamá" class="country-flag">
+            </div>
+            <p>Panamá, el puente entre dos continentes y dos océanos, es mucho más que su famoso canal. Este país ofrece una fascinante mezcla de modernidad y naturaleza, con rascacielos futuristas junto a selvas tropicales, playas paradisíacas en el Caribe y el Pacífico, y culturas indígenas que mantienen sus tradiciones.</p>
+            
+            <h3>Lugares Turísticos</h3>
+            <div class="gallery">
+                <div class="attraction">
+                    <img src="https://i.blogs.es/8142b2/alex-pagliuca-vo64g7kwneo-unsplash/1366_2000.jpeg" alt="Canal de Panamá">
+                    <div class="attraction-info">
+                        <h4>Canal de Panamá</h4>
+                        <p>Maravilla de la ingeniería moderna que conecta los océanos Atlántico y Pacífico, con sus impresionantes esclusas.</p>
+                    </div>
+                </div>
+                <div class="attraction">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/59/Casco_viejo_de_panama1.jpg" alt="Casco Viejo">
+                    <div class="attraction-info">
+                        <h4>Casco Viejo</h4>
+                        <p>Centro histórico de la ciudad de Panamá con arquitectura colonial, plazas encantadoras y una vibrante vida cultural.</p>
+                    </div>
+                </div>
+                <div class="attraction">
+                    <img src="https://assets.simpleviewinc.com/simpleview/image/upload/c_fill,f_avif,h_838,q_65,w_577/v1/clients/panama/large_Old_Bank_town_Bastimentos_Island_Bocas_del_Toro_province_837fff0b-3ed3-49e1-bbde-ed371a2030dc.jpg" alt="Bocas del Toro">
+                    <div class="attraction-info">
+                        <h4>Bocas del Toro</h4>
+                        <p>Archipiélago caribeño con playas de arena blanca, aguas cristalinas y una relajada atmósfera tropical.</p>
+                    </div>
+                </div>
+                <div class="attraction">
+                    <img src="https://assets.simpleviewinc.com/simpleview/image/upload/c_fill,f_avif,h_838,q_65,w_577/v1/clients/panama/large_Boquete_Province_of_Chiriqu__3f56939a-5a74-4f2b-ba5e-8074820498fb.jpg" alt="Boquete">
+                    <div class="attraction-info">
+                        <h4>Boquete</h4>
+                        <p>Pueblo de montaña en las tierras altas, famoso por su clima primaveral, café gourmet y naturaleza exuberante.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <h3>Mapa de Panamá</h3>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1014531.1307593875!2d-80.119488!3d8.538!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8fa61583c8be2be3%3A0x79eee04d1fa59bcf!2sPanam%C3%A1!5e0!3m2!1ses!2sus!4v1620000000000!5m2!1ses!2sus" width="100%" height="450" loading="lazy"></iframe>
+            </div>
+            
+            <h3>Gastronomía Local</h3>
+            <div class="food-section">
+                <div class="food-card">
+                    <img class="food-img" src="https://www.recetasnestlecam.com/sites/default/files/styles/recipe_detail_desktop_new/public/srh_recipes/d575e3c2b1d47b734cb6720a7e1399cb.webp?itok=fOjKG9iT" alt="Sancocho">
+                    <div class="food-info">
+                        <h4>Sancocho</h4>
+                        <p>Sopa espesa de pollo con ñame, culantro y otros vegetales, considerada el plato nacional de Panamá.</p>
+                    </div>
+                </div>
+                <div class="food-card">
+                    <img class="food-img" src="https://www.recetaspanama.com/base/stock/Recipe/ceviche-al-estilo-panameno/ceviche-al-estilo-panameno_web.jpg.webp" alt="Ceviche">
+                    <div class="food-info">
+                        <h4>Ceviche</h4>
+                        <p>Pescado o mariscos marinados en jugo de limón con cebolla, cilantro y ají, servido como aperitivo refrescante.</p>
+                    </div>
+                </div>
+                <div class="food-card">
+                    <img class="food-img" src="https://i0.wp.com/www.buenossaborespanama.com/wp-content/uploads/2024/11/beef-shredded-meat-with-sauce-in-black-pan-grey-b-2024-10-13-04-51-35-utc-scaled.jpg?resize=1440%2C960&ssl=1" alt="Ropa Vieja">
+                    <div class="food-info">
+                        <h4>Ropa Vieja</h4>
+                        <p>Carne desmenuzada guisada con tomate, cebolla y pimientos, servida con arroz y frijoles.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="fun-fact">
+                <h3>¿Sabías que?</h3>
+                <p>En Panamá puedes ver el amanecer en el Océano Pacífico y el atardecer en el Mar Caribe en el mismo día, ya que el país tiene una orientación única de este a oeste. Además, es el único lugar en el mundo donde puedes ver tres continentes (América, Europa y Asia) desde un solo punto en el Centro de Visitantes de Miraflores del Canal.</p>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <h3>Descubre Centroamérica</h3>
+            <p>Explora la riqueza cultural y natural de estos cinco países extraordinarios</p>
+           
+            <p>&copy; 2025 Maravillas de Centroamérica. Todos los derechos reservados ICVC A.R.</p>
+        </div>
+    </footer>
+</body>
+</html>
